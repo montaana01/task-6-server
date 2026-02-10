@@ -1,12 +1,17 @@
 import express from 'express';
+import http from "node:http";
+import { WebSocketServer, WebSocket } from "ws";
 
 const app = express();
-const port = process.env.PORT ?? '3000';
 
 app.get('/', (req, res) => {
-  res.send({ ok: true, service: 'auth-dashboard-api' });
+  res.send({ ok: true, service: 'websocket-6-task-server' });
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+const server = http.createServer(app);
+
+const wss = new WebSocketServer({ noServer: true });
+
+app.listen(3000, () => {
+  console.log(`Example app listening on port ${3000}`);
 });
